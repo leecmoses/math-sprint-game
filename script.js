@@ -259,10 +259,13 @@ const countdownStart = () => {
 
   let counter = setInterval(() => {
     count--;
-    countdown.textContent = count;
     if (count === 0) {
-      clearInterval(counter);
       countdown.textContent = "GO!";
+    } else if (count === -1) {
+      showGamePage();
+      clearInterval(counter);
+    } else {
+      countdown.textContent = count;
     }
   }, 1000);
 };
@@ -271,9 +274,8 @@ const countdownStart = () => {
 const showCountdown = () => {
   countdownPage.hidden = false;
   splashPage.hidden = true;
-  countdownStart();
   populateGamePage();
-  setTimeout(showGamePage, 4000);
+  countdownStart();
 };
 
 // Get the value from selected radio button
